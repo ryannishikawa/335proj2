@@ -22,7 +22,7 @@ def runEncode(S):
     
     return answer
 
-Efficiency Analysis:
+Mathematical Analysis:
 
 "for i from 0 to n-1" runs at most n times.
 
