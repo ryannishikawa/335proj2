@@ -80,13 +80,13 @@ void handle_line(const string& line, map<string, vector<string>>& arrays) {
     vector<string> cities = {};
     //search for array name
     while (state == 0 && i < line.length()) {
+        if (line[i] == '=') { state = 1; break; }
         if (!iswspace(line[i])) { 
             if (ready == true) {arr_name = "";}
             arr_name += line[i]; 
             ready = false;
         }
         else if (iswspace(line[i]) && arr_name.length() > 0) { ready = true; }
-        if (line[i] == '=') { state = 1; }
         i++;
     }
     //add cities to map
