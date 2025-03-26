@@ -1,0 +1,34 @@
+The Run Encoding Problem is:
+
+Input: a string 𝑆 of 𝑛 characters, where each character is a lower-case letter or space
+
+Output: a string 𝐶 where each run of 𝑘 repetitions of the character 𝑥 is replaced with the
+string "𝑘𝑥"
+
+def runEncode(S):
+    n = length of string
+    answer = " "
+
+    for i from 0 to n-1:
+        k = 1
+
+        while i is less than n-1 and S[i] is equal to S[i+1]:
+            k = k + 1
+            i = i + 1
+        
+        if k > 1:
+            append k as a string to answer
+        append S[i] to answer
+    
+    return answer
+
+Efficiency Analysis:
+
+"for i from 0 to n-1" runs at most n times.
+
+The while loop would loop, in the worst case, an n amount of times if all the characters within string S are the same.
+Since i only moves forward, the total number of loops happening would be at most n.
+
+Appending to the string answer is a (amortized) constant time operation, O(1). 
+
+Therefore, the efficiency class of this algorithm is O(n).
