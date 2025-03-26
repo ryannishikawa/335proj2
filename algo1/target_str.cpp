@@ -147,6 +147,7 @@ int main() {
                     if ((peek - i) == arr2.second[j].length()) { //if the string matches, add the location and city name to the vectors
                         locs.push_back(i);
                         what.push_back(arr2.second[j]);
+                        i = peek - 1;
                     }
                 }
             }
