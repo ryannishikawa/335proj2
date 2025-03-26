@@ -90,18 +90,17 @@ void handle_line(const string& line, map<string, vector<string>>& arrays) {
         i++;
     }
     //add cities to map
+    //have to check using isalnum bc the " " and ' ' in the input is weird and not recognized as a char
     while (state == 1 && i < line.length()) {
         if (isalnum(line[i])) { city += line[i]; }
         else if (line[i] == ']') { state = 2; }
-        else if (!isalnum(line[i])){ 
-            if (city != "") { 
-                cities.push_back(city); 
-                city = ""; 
-            } 
+        else if (!city.empty()){ 
+            cities.push_back(city); 
+            city.clear(); 
         }
         i++;
     }
-    if (state == 2) {
+    if (state == 2 && !cities.empty()) {
         print_arr(arr_name, cities);
         arrays.insert({arr_name, cities});
     }
@@ -115,7 +114,7 @@ int main() {
          << "~to run this code with different input, edit \"in2a.txt\"\n\n";
     ifstream input("in2a.txt");
     if (input.is_open()) {
-        string line;
+        string line = "";;
 
         cout << "\nInput: \n";
         while (getline(input, line)) {
