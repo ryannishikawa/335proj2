@@ -1,0 +1,47 @@
+The Merging Sorted Arrays Problem is:
+Input: A list of K sorted arrays, where each array contains integers in ascending order.
+
+Output: A single sorted array containing all elements from the input arrays, merged in ascending order.
+
+Pseudocode for Merging Sorted Arrays Using a Min-Heap
+
+def mergeSortedArrays(arrays):
+    merged_result = []  # Stores the final merged sorted list
+    min_heap = MinHeap()  # Priority queue to track the smallest elements
+
+    # Insert the first element of each array into the heap
+    for i from 0 to length(arrays) - 1:
+        if arrays[i] is not empty:
+            min_heap.insert((arrays[i][0], i, 0))  # (value, array index, element index)
+
+    # Process the heap until it is empty
+    while min_heap is not empty:
+        current_value, array_idx, element_idx = min_heap.extract_min()
+        merged_result.append(current_value)
+
+        # If there are more elements in the current array, insert the next one
+        if element_idx + 1 < length(arrays[array_idx]):
+            next_value = arrays[array_idx][element_idx + 1]
+            min_heap.insert((next_value, array_idx, element_idx + 1))
+
+    return merged_result
+
+Mathematical Analysis:
+
+Heap Initialization:
+    Inserting the first element of each of K arrays into the heap takes O(K log K) time (since each insertion is O(log K)).
+
+Heap Operations During Merging:
+    There are N total elements across all arrays (N = sum of lengths of all arrays).
+    Each element is extracted once (O(log K) per extraction).
+    Each element (except the last in its array) is inserted once (O(log K) per insertion).
+    Total operations: O(N log K).
+
+Space Complexity:
+    The heap stores at most K elements at any time → O(K).
+    The merged result stores N elements → O(N).
+    Total space: O(N + K).
+
+Efficiency Class:
+    Time Complexity: O(N log K) (where N = total elements, K = number of arrays).
+    Space Complexity: O(N) 
